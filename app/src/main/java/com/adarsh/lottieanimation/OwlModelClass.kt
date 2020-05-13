@@ -5,10 +5,6 @@ import com.airbnb.lottie.LottieAnimationView
 
 class OwlModelClass (var owlView: LottieAnimationView ) {
 
-    init {
-
-    }
-
     fun begin():Boolean{
         owlView.progress = 17f
         owlView.speed= 0.5f
