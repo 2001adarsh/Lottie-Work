@@ -22,4 +22,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:lottie_fileName="owllookingasset.json" />
 
+    <TextView
+        android:id="@+id/total"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginBottom="6dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/owlimg"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

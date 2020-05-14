@@ -19,6 +19,7 @@ class SecondActivity : AppCompatActivity() {
         setContentView(R.layout.activity_second)
 
         owl = OwlModelClass(owlimg)
+        total.text=(owlimg.duration.toString())
 
         CoroutineScope(Dispatchers.Main).launch {
           async  {
