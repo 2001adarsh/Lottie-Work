@@ -21,47 +21,26 @@ class SecondActivity : AppCompatActivity() {
         owl = OwlModelClass(owlimg)
 
         CoroutineScope(Dispatchers.Main).launch {
-           // setAnimation()
-            async {
+          async  {
                 owlimg.progress = 17f
                 owlimg.speed= 0.5f
                 owlimg.setMinAndMaxFrame(5, 100)
                 owlimg.playAnimation()
+                val dur=owlimg.duration
                 Log.d("BaseActivity", " PlayAnimation started and ended.")
+               delay(dur)
             }.await()
             async {
                 owlimg.progress = 127f
                 owlimg.speed = 0.5f
                 owlimg.setMinAndMaxFrame(127, 209)
+                val dur=owlimg.duration
                 owlimg.playAnimation()
                 Log.d("BaseActivity", " ReadingAnimation started and ended.")
+                delay(dur)
             }.await()
         }
     }
 
-    suspend fun setAnimation(){
-        val job = GlobalScope.launch(Dispatchers.Main){
-            //val value =  owl.begin()
-          //  Log.d("VALUE ->", value.toString())
 
-            owlimg.progress = 17f
-            owlimg.speed= 0.5f
-            owlimg.setMinAndMaxFrame(5, 100)
-            owlimg.playAnimation()
-            Log.d("BaseActivity", " PlayAnimation started and ended.")
-        }
-        job.join()
-
-        val job1= GlobalScope.launch(Dispatchers.Main){ owl.reading() }
-         job1.join()
-
-//        Toast.makeText(this, "Start of begin()", Toast.LENGTH_SHORT).show()
-//        owl.begin()
-//        Toast.makeText(this, "Paused", Toast.LENGTH_SHORT).show()
-//        owl.pause()
-//        Toast.makeText(this, "Start of reading()", Toast.LENGTH_SHORT).show()
-//        Thread.sleep(000)
-//        owl.reading()
-
-    }
 }
