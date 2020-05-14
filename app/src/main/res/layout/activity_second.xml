@@ -24,18 +24,6 @@
         app:layout_constraintVertical_bias="0.049"
         app:lottie_fileName="owllookingasset.json" />
 
-    <TextView
-        android:id="@+id/total"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="7dp"
-        android:layout_marginBottom="6dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/owlimg"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/layoutEmail"
         android:layout_width="match_parent"
@@ -67,9 +55,12 @@
         android:layout_height="56dp"
         android:layout_marginTop="36dp"
         android:hint="Password"
+        android:id="@+id/inputLayout"
         app:passwordToggleEnabled="true"
         app:passwordToggleContentDescription="Check before you submit"
         app:hintAnimationEnabled="true"
+        app:boxBackgroundMode="outline"
+        android:background="@drawable/border"
         app:counterEnabled="true"
         app:counterMaxLength="20"
         app:layout_constraintEnd_toEndOf="@+id/layoutEmail"
@@ -81,6 +72,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:maxLines="1"
+            android:layout_marginLeft="8dp"
             android:singleLine="true"
             android:inputType="textPassword"/>
 

@@ -47,6 +47,12 @@ class OwlModelClass (var owlView: LottieAnimationView ) {
         owlView.setMinAndMaxFrame(73, 127)
         owlView.playAnimation()
     }
+    fun reversePreTracking(){
+        owlView.loop(false)
+        owlView.speed= -0.6f
+        owlView.setMinAndMaxFrame(73, 127)
+        owlView.playAnimation()
+    }
 
     fun focusChange(){
         owlView.loop(false)
@@ -66,5 +72,12 @@ class OwlModelClass (var owlView: LottieAnimationView ) {
 
     fun position(progress:Float, start:Float, stop:Float, minframe:Float, maxframe:Float ): Float{
         return (minframe + (maxframe - minframe) * progress)
+    }
+
+    fun closeEyes(){
+        owlView.loop(false)
+        owlView.speed = 0.5f
+        owlView.setMinAndMaxFrame(20,28)
+        owlView.progress = 0.75f
     }
 }
