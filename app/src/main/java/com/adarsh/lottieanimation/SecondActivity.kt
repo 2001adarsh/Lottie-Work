@@ -7,6 +7,7 @@ import android.widget.Toast
 import com.airbnb.lottie.LottieAnimationView
 import kotlinx.android.synthetic.main.activity_second.*
 import kotlinx.coroutines.*
+import java.time.Duration
 import kotlin.concurrent.thread
 import kotlin.coroutines.CoroutineContext
 
@@ -18,28 +19,20 @@ class SecondActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_second)
 
-        owl = OwlModelClass(owlimg)
-        total.text=(owlimg.duration.toString())
+
+       owl = OwlModelClass(owlimg)
 
         CoroutineScope(Dispatchers.Main).launch {
           async  {
-                owlimg.progress = 17f
-                owlimg.speed= 0.5f
-                owlimg.setMinAndMaxFrame(5, 100)
-                owlimg.playAnimation()
-                val dur=owlimg.duration
-                Log.d("BaseActivity", " PlayAnimation started and ended.")
-               delay(dur)
-            }.await()
+              val dur = owl.begin()
+              delay(dur)
+          }.await()
+
             async {
-                owlimg.progress = 127f
-                owlimg.speed = 0.5f
-                owlimg.setMinAndMaxFrame(127, 209)
-                val dur=owlimg.duration
-                owlimg.playAnimation()
-                Log.d("BaseActivity", " ReadingAnimation started and ended.")
+                val dur = owl.reading()
                 delay(dur)
             }.await()
+
         }
     }
 
