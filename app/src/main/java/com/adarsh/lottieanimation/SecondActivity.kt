@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.text.method.PasswordTransformationMethod
 import android.util.Log
+import android.view.View
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import kotlinx.android.synthetic.main.activity_second.*
@@ -34,11 +36,9 @@ class SecondActivity : AppCompatActivity() {
         inputEmail.addTextChangedListener(object : TextWatcher{
 
             override fun afterTextChanged(p0: Editable?) {
-             //   owl.focusChange()
-            }
+             }
 
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            //    owl.preTracking()
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -59,20 +59,26 @@ class SecondActivity : AppCompatActivity() {
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                //if(!PasswordToggle){
+                val text = inputPassword.text.toString()
+                if(!PasswordToggle && (!text.isEmpty())){
                     owl.closeEyes()
-               // } else {
-                //    owl.setEyesPosition(getTextWidth(inputPassword) / inputPassword.width)
-                //}
+                } else {
+                    owl.setEyesPosition(getTextWidth(inputPassword) / inputPassword.width)
+                }
             }
         })
 
-        //Issue here -> Checking for password toggle
-//        inputLayout.addOnEndIconChangedListener(){
-//            PasswordToggle = PasswordToggle != true
-//        }
 
-
+        inputLayout.setEndIconOnClickListener {
+            val editText = inputLayout.editText
+            val oldSelection = editText?.selectionEnd
+            val hidePassword = editText?.transformationMethod !is PasswordTransformationMethod
+            inputPassword.transformationMethod = PasswordTransformationMethod.getInstance().takeIf { hidePassword }
+            if (oldSelection!! >= 0) {
+                inputPassword.setSelection(oldSelection)
+            }
+                PasswordToggle = PasswordToggle!=true
+        }
 
         //This no longer needed
         /*
@@ -94,5 +100,5 @@ class SecondActivity : AppCompatActivity() {
     private fun getTextWidth(editText: TextInputEditText): Float {
         return editText.paint.measureText(editText.text.toString())
     }
-
 }
+
