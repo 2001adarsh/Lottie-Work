@@ -1,5 +1,6 @@
 package com.adarsh.lottieanimation
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -19,6 +20,10 @@ class SecondActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_second)
+
+        button.setOnClickListener {
+            startActivity(Intent(this, ThirdActivity::class.java))
+        }
 
        owl = OwlModelClass(owlimg)
         inputEmail.setOnFocusChangeListener { _, hasFocus ->
